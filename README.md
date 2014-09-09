@@ -1,6 +1,10 @@
-# Breed (Git Continuous Deployment Framework)
+# Breed
 
-## Breed allows you to deploy your git repositories continuously and intelligently.
+## Code in development - don't use yet.
+
+## (Continuous Git Deployment Framework)
+
+Breed allows you to deploy your git repositories continuously and intelligently.
 
 - Processes a JSON payload
 - Includes auth
