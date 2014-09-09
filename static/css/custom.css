@@ -1,0 +1,34 @@
+h1 {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+	font-size: 3em;
+	padding-top: 20px;
+	padding-left: 55px;
+	background-image: url('/static/logo.png');
+	background-repeat: no-repeat;
+	background-position-y: 18px;
+	background-position-x: -5px;
+}
+.label {
+	float: right;
+	margin-right: 2px;
+}
+
+textarea {
+	width : 100%;
+}
+
+.help-block {
+	float: right;
+}
+
+.panel-top {
+	border-color: #e0c529;
+}
+.panel-top .panel-heading {
+	background-image: linear-gradient(to bottom, #edc435 0%, #f5e757 100%) !important ;
+	border-color: #e0c529;
+	
+.panel-heading {
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace !important;
+	font-weight: 400 !important;

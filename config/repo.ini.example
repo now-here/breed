@@ -1,0 +1,11 @@
+[general]
+root_dir: 	/var/www/test
+
+[op_gitflow]
+
+active: 	False
+deploy: 	master,feature,release,hotfix
+
+[op_mysql_database_copy]
+
+active: 	True

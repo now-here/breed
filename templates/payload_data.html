@@ -1,0 +1,12 @@
+$def with (payloads_sorted, payloads)
+
+$for payload in payloads_sorted:
+	<div class="panel panel-info">\
+		<div class="panel-heading">
+			Payload processed on $payload.get('time')\
+		</div>
+		<div class="panel-body">
+	    	<div class="payload_json" id="json_$payloads.index(payload)"><pre>$:payload.get('json')</pre></div>
+			<div class="payload_log" id="log_$payloads.index(payload)"><pre>$:payload.get('log')</pre></div>
+		</div>
+	</div>

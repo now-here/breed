@@ -1,0 +1,47 @@
+[general]
+
+#-------------------------------
+# Auth Used to protect deploy hook url and test page
+#-------------------------------
+username: admin
+password: change_this
+
+#-------------------------------
+# Location of the logs
+#-------------------------------
+log_dir: logs
+
+#-------------------------------
+# Log info and error messages (debug) 
+# Log only error messages (error) 
+#-------------------------------
+log_level: 	debug
+
+#-------------------------------
+# General log - Size when a new log is started
+#-------------------------------
+log_maxbytes:		10000000
+
+#-------------------------------
+# General log - Number of log files to store
+#-------------------------------
+log_backupcount:	5
+
+#-------------------------------
+# Fragment logs - Days to keep details of each payload processed
+#-------------------------------
+log_payload_keep: 	1
+
+
+[operations]
+
+#-------------------------------
+# Operations general config
+#-------------------------------
+
+# github token for deploying github repos
+# github_token: 78gfreuyivgr389fg34nfETC
+
+# env - such as dev, staging, prd
+# env: DEV
+
