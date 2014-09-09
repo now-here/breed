@@ -26,8 +26,10 @@ urls = (
 try:
 	import mod_wsgi
 	application = web.application(urls, globals()).wsgifunc()
+	wsgi = True
 except:
 	application = web.application(urls, globals())	
+	wsgi = False
 	pass
 
 render = web.template.render('templates/')
@@ -132,7 +134,7 @@ def auth(web, debug=False):
 		return
 		
 
----------------------------
+#---------------------------
 # It all starts here... 
 #---------------------------------
 # Only used if running from command line with `python run.py 80`
