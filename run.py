@@ -9,10 +9,12 @@ import sys
 import traceback
 import ConfigParser
 
-from breed import breed
+# Get current directory. Add to python paths. Point os to it.
+PATH = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(PATH)
+os.chdir(PATH)
 
-# Point os at cwd
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
+from breed import breed
 
 # Init webpy framework
 urls = (
@@ -20,7 +22,14 @@ urls = (
 	"/payload_data", "payload_data",
 	"/deploy", "deploy",
 )
-app = web.application(urls, globals())
+
+try:
+	import mod_wsgi
+	application = web.application(urls, globals()).wsgifunc()
+except:
+	application = web.application(urls, globals())	
+	pass
+
 render = web.template.render('templates/')
 
 
@@ -123,8 +132,9 @@ def auth(web, debug=False):
 		return
 		
 
-#---------------------------------
+---------------------------
 # It all starts here... 
 #---------------------------------
+# Only used if running from command line with `python run.py 80`
 if __name__ == '__main__':
-	app.run()
+ 	application.run()
