@@ -18,7 +18,8 @@ from breed import breed
 
 # Init webpy framework
 urls = (
-	"/,/test", "test",
+	"/", "test",
+	"/test", "test",
 	"/payload_data", "payload_data",
 	"/deploy", "deploy",
 )
