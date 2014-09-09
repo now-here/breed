@@ -1,11 +1,22 @@
+#-------------------------------
+# Repo specific config
+#-------------------------------
+
 [general]
-root_dir: 	/var/www/test
+root_dir: /var/www/domain.com/
 
 [op_gitflow]
 
-active: 	False
-deploy: 	master,feature,release,hotfix
+# Will create a folder for each branch within root dir
+active: False
 
 [op_mysql_database_copy]
 
-active: 	True
+active: True
+
+# Uses active branch name from payload by default
+# i.e. repo_name_master > repo_name_branch_name
+
+# Optional static names
+# db_name_from = 'example1'
+# db_name_to = 'example2'
