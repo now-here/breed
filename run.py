@@ -73,7 +73,7 @@ class test:
 
 	def GET(self):
 
-		if auth(web):
+		if True: #auth(web):
 
 			a = breed()
 			a.get_config()
@@ -90,7 +90,7 @@ class payload_data:
 		a = breed()
 		config = a.get_config()
 
-		if auth(web):
+		if True: #auth(web):
 
 			payloads = []
 			for x in os.listdir(config.get('general','log_dir')) :
