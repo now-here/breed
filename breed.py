@@ -62,7 +62,7 @@ class breed():
 		self.payload_init()
 		self.load_repo_config()
 
-		self.log_info("Starting deployment of %s" % self.repo_fullname)
+		self.log_info("Starting deployment of branch {1} in {0}".format(self.repo_fullname,self.branch))
 		
 		# Run operations on branch create, change or delete
 		self.payload_process()
@@ -99,17 +99,12 @@ class breed():
 
 	def payload_process(self):
 		
-		self.log_info("Running {0} operations on {1}".format(self.operation,self.repo_fullname))
+		self.log_info("Running {0} operations".format(self.operation))
 		self.run_operations(self.operation);
 		
 		self.log_info('Finished deployment!')
 		
-		# send info back
-		if(self.config.get('general','log_level') == 'debug'):
-			message = 'verbose output\n======================='
-			return [message]+list(self.log)
-		else:
-			return "Payload processed successfully"
+		return list(self.log)
 			
 
 	#--------------------------------------------------
@@ -215,10 +210,9 @@ class breed():
 	#--------------------------------------------------
 	def log_info(self, message):
 	
-		if self.config.get('general','log_level') == 'debug' :
-			self.logger_global.info(message)
-			self.logger_fragment.info(message)
-			self.log_add_msg(message)
+		self.logger_global.info(message)
+		self.logger_fragment.info(message)
+		self.log_add_msg(message)
 
 	#--------------------------------------------------
 	# Logging for operations - add pretext

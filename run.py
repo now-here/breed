@@ -116,7 +116,7 @@ class payload_data:
 # Authenticate both test and hook
 # @todo - to work with WSGI - cookie based not http auth
 #---------------------------------
-def auth(web, debug=False):
+def auth(web):
 
 	auth = web.ctx.env.get('HTTP_AUTHORIZATION')
 

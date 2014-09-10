@@ -18,12 +18,6 @@ password: change_this
 log_dir: logs
 
 #-------------------------------
-# Log info and error messages (debug) 
-# Log only error messages (error) 
-#-------------------------------
-log_level: debug
-
-#-------------------------------
 # General log - Size when a new log is started
 #-------------------------------
 log_maxbytes: 10000000
