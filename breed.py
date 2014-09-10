@@ -118,8 +118,14 @@ class breed():
 	#--------------------------------------------------
 	def log_fragment_mkdir(self):
 		
+		# Attempt to create the log dir
+		if not os.path.isdir(self.log_dir):
+			os.mkdir(self.log_dir)
+
 		# Generate unique ID for this deploy
 		deploy_id = datetime.datetime.now()
+		
+		# Attempt to create the fragment dir
 		self.fragment_dir = '{0}/payload_{1}/'.format(self.log_dir,deploy_id)
 
 		if not os.path.isdir(self.fragment_dir):
