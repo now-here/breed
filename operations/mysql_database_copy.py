@@ -20,15 +20,15 @@ class mysql_database_copy():
 		if breed.get_op_var('db_name_from'):
 			db_name_from = breed.get_op_var('db_name_from')
 		else:
-			db_name_from = db_name_prefix+"_master"
+			db_name_from = db_name_prefix+"master"
 
 		if operation == 'branch_created':
 
 			command = ['mysqldump',
 					'--user='+db_u,
 					'--password='+db_p,
-					'--databases',
-					db_name_from]
+					db_name_from,
+					'--no-create-db']
 			sql = breed.run(stdout_return=True, stdout_log=False, command=command)
 
 			breed.run(stdin='CREATE DATABASE '+db_name_to, command=['mysql',

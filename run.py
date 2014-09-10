@@ -45,6 +45,7 @@ class deploy:
 
 		# Run main deploy code
 		# @todo - return error response in headers when things go wrong
+		# @todo - background processing, send response by email?
 		try:
 
 			a = breed()

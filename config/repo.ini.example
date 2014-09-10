@@ -25,8 +25,8 @@ db_p: password
 
 # Optional prefix (replaces 'repo_name')
 # 'branch_name' is always added to the database name
-# db_name_prefix: 'hello_'
+# db_name_prefix: hello_
 
 # Optional static from database name
-# db_name_from: 'db_name'
+# db_name_from: db_name
 

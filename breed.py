@@ -242,6 +242,7 @@ class breed():
 	
 	#--------------------------------------------------
 	# Create loggers
+	# @todo - fix issue where duplicates appear when running on command line
 	#--------------------------------------------------
 	def set_logger(self,name,log_file,rotating=False):
 	
