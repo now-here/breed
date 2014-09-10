@@ -82,7 +82,7 @@ class breed():
 		self.repo_name 			= self.payload['repository']['name']
 		self.repo_fullname		= self.payload['repository']['organization']+"/"+self.repo_name
 		self.repo_config_name	= re.sub('[^0-9a-zA-Z]+', '_', self.repo_name)
-		self.repo_url = 'https://'+self.config.get('operations','github_token')+':none@github.com/'+self.repo_fullname+'.git'
+		self.repo_url = 'https://'+self.config.get('operations','github_token')+':@github.com/'+self.repo_fullname+'.git'
 		
 		if self.payload['created']:
 			self.operation = 'branch_created'
@@ -195,6 +195,8 @@ class breed():
 
 	#--------------------------------------------------
 	# Add error to self.log so we can return to test webpage, and raise an exception
+	# @todo - somthing not quite right about this logic. Perhaps only raise Exceptions locally?
+	# But how do I capture and return logs... brain fuzz
 	#--------------------------------------------------
 	def log_raise(self, message):
 	
