@@ -10,18 +10,17 @@ class mysql_database_copy():
 		db_u = breed.get_op_var('db_u')
 		db_p = breed.get_op_var('db_p')
 
-		if breed.get_op_var('db_name_to'):
-			db_name_to = breed.get_op_var('db_name_to')
+		if breed.get_op_var('db_name_prefix'):
+			db_name_prefix = breed.get_op_var('db_name_prefix')
 		else:
-			db_name_to = breed.repo_name+"_"+breed.branch
-			db_name_to = re.sub('[^0-9a-zA-Z]+', '_', db_name_to)
+			db_name_prefix = re.sub('[^0-9a-zA-Z]+', '_', breed.repo_name)+"_"
+
+		db_name_to = db_name_prefix+re.sub('[^0-9a-zA-Z]+', '_', breed.branch)
 
 		if breed.get_op_var('db_name_from'):
 			db_name_from = breed.get_op_var('db_name_from')
 		else:
-			db_name_from = breed.repo_name+"_master"
-			db_name_from = re.sub('[^0-9a-zA-Z]+', '_', db_name_from)
-
+			db_name_from = db_name_prefix+"_master"
 
 		if operation == 'branch_created':
 
