@@ -43,25 +43,27 @@ class deploy:
 
 	def POST(self,breed_token):
 
-		if config.get('general','breed_token') != breed_token
-		
-			return 'Token auth failed'
+		# Run main deploy code
+		try:
 
-		else:
-		
-			# Run main deploy code
-			try:
-				a = breed()
-				a.get_config()
+			a = breed()
+			a.get_config()
+	
+			if a.config.get('general','breed_token') != breed_token
+			
+				raise Exception('Token auth failed')
+	
+			else:
+			
 				a.set_payload(web.data())
 				a.deploy()
-							
-			except Exception, e:
-				#return "There was an error\n"+traceback.format_exc()+"\n\n"+a.log_get()
-				return "There was an error\n"+traceback.format_exc()
-	
-			else :
-				return a.log_get()
+						
+		except Exception, e:
+			#return "There was an error\n"+traceback.format_exc()+"\n\n"+a.log_get()
+			return "There was an error\n"+traceback.format_exc()
+
+		else :
+			return a.log_get()
 
 		
 #---------------------------------
