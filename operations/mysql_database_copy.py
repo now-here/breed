@@ -7,8 +7,8 @@ class mysql_database_copy():
 
 	def __init__(self,breed,operation):
 
-		db_u		= breed.get_op_var('db_u')
-		db_p		= breed.get_op_var('db_p')
+		db_u = breed.get_op_var('db_u')
+		db_p = breed.get_op_var('db_p')
 
 		if breed.get_op_var('db_name_to'):
 			db_name_to = breed.get_op_var('db_name_to')

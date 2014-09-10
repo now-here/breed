@@ -21,7 +21,7 @@ urls = (
 	"/", "test",
 	"/test", "test",
 	"/payload_data", "payload_data",
-	"/deploy", "deploy",
+	"/deploy/(.+)", "deploy",
 )
 
 try:
@@ -41,21 +41,27 @@ render = web.template.render('templates/')
 #---------------------------------
 class deploy:
 
-	def POST(self):
+	def POST(self,breed_token):
 
-		# Run main deploy code
-		try:
-			a = breed()
-			a.get_config()
-			a.set_payload(web.data())
-			a.deploy()
-						
-		except Exception, e:
-			#return "There was an error\n"+traceback.format_exc()+"\n\n"+a.log_get()
-			return "There was an error\n"+traceback.format_exc()
+		if config.get('general','breed_token') != breed_token
+		
+			return 'Token auth failed'
 
-		else :
-			return a.log_get()
+		else:
+		
+			# Run main deploy code
+			try:
+				a = breed()
+				a.get_config()
+				a.set_payload(web.data())
+				a.deploy()
+							
+			except Exception, e:
+				#return "There was an error\n"+traceback.format_exc()+"\n\n"+a.log_get()
+				return "There was an error\n"+traceback.format_exc()
+	
+			else :
+				return a.log_get()
 
 		
 #---------------------------------
@@ -101,6 +107,7 @@ class payload_data:
 
 #---------------------------------
 # Authenticate both test and hook
+# @todo - to work with WSGI - cookie based not http auth
 #---------------------------------
 def auth(web, debug=False):
 

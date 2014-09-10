@@ -1,7 +1,13 @@
 [general]
 
 #-------------------------------
-# Auth Used to protect deploy hook url and test page
+# Token used to protect payload url
+# Make it complex but url friendly
+#-------------------------------
+breed_token: change_this-78gf8f89fns87dqw67e21ge27ddwq2
+
+#-------------------------------
+# Auth Used to protect test page
 #-------------------------------
 username: admin
 password: change_this
