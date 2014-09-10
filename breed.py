@@ -318,7 +318,8 @@ class breed():
 
 
 	#--------------------------------------------------
-	# imports operations modules and runs code 
+	# imports operations modules and runs code
+	# @todo - if an operation fails, reverse operations
 	#--------------------------------------------------
 	def run_operations(self, operation):
 
