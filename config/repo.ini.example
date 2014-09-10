@@ -14,6 +14,11 @@ active: False
 
 active: True
 
+# You can place u and p in general.ini 'operations' section
+# if you want all repos to use same access details
+db_u: example
+db_p: password
+
 # Uses active branch name from payload by default
 # i.e. repo_name_master > repo_name_branch_name
 

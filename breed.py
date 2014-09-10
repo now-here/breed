@@ -352,7 +352,7 @@ class breed():
 				config = ConfigParser.ConfigParser()
 				config.read(CONFIG_DIR+'/general.ini')
 			else:
-				raise 'Config file does not exist '+CONFIG_DIR+'/general.ini'
+				raise Exception('Config file does not exist '+CONFIG_DIR+'/general.ini')
 		except Exception, e:
 			raise Exception(str(e))
 		else:

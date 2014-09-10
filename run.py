@@ -49,7 +49,7 @@ class deploy:
 			a = breed()
 			a.get_config()
 	
-			if a.config.get('general','breed_token') != breed_token
+			if a.config.get('general','breed_token') != breed_token:
 			
 				raise Exception('Token auth failed')
 	
@@ -75,7 +75,10 @@ class test:
 
 		if auth(web):
 
-			return render.test()
+			a = breed()
+			a.get_config()
+	
+			return render.test(a.config.get('general','breed_token'))
 		
 #---------------------------------
 # Get recent payloads and logs

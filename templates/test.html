@@ -1,4 +1,4 @@
-$def with ()
+$def with (breed_token)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +86,7 @@ $def with ()
 			// Send the data using post
 			$$.ajax({
 				type: "POST",
-				url: "/deploy",
+				url: "/deploy/$breed_token",
 				data: $$("#payload").val(),
 				success: function(msg) {
 					$$( "#result" ).show()
