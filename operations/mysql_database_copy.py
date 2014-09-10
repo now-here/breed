@@ -24,22 +24,27 @@ class mysql_database_copy():
 
 		if operation == 'branch_created':
 
+			p = breed.run(stdin='CREATE DATABASE '+db_name_to, command=['mysql',
+					'--user='+db_u,
+					'--password='+db_p],raise_error=False)
+					
+			# if error code is 1 - database already exists - we deployed this already
+			if p[2] == 1:
+				breed.log_op_info("Database %s exists - already deployed" % db_name_to)
+				return
+				
 			command = ['mysqldump',
 					'--user='+db_u,
 					'--password='+db_p,
 					db_name_from,
 					'--no-create-db']
-			sql = breed.run(stdout_return=True, stdout_log=False, command=command)
+			p = breed.run(stdout_log=False, command=command)
 
-			breed.run(stdin='CREATE DATABASE '+db_name_to, command=['mysql',
-					'--user='+db_u,
-					'--password='+db_p])
-			
 			command = ['mysql',
 					'--user='+db_u,
 					'--password='+db_p,
 					db_name_to]
-			breed.run(stdin=sql, command=command)
+			breed.run(stdin=p[0], command=command)
 
 		elif operation == 'branch_changed' :
 

@@ -158,8 +158,8 @@ class breed():
 	
 		command 		= kwargs.get('command')
 		stdout_log 		= kwargs.get('stdout_log',True)
-		stdout_return 	= kwargs.get('stdout_return',False)
 		stdin 			= kwargs.get('stdin',False)
+		raise_error 	= kwargs.get('raise_error',True)
 
 		try:
 			process = subprocess.Popen(list(command), 
@@ -186,11 +186,11 @@ class breed():
 			self.log_info(''.join(msg_op))
 
 			# The process ran sucessfully, but failed
-			if process.returncode > 0 :
+			if raise_error and process.returncode > 0 :
 				stderr_op = ['Operation: '+line for line in stderr.splitlines(True)]
 				raise Exception(stderr_op)
-			elif stdout_return:
-				return stdout
+			else:
+				return [stdout,stderr,process.returncode]
 
 
 	#--------------------------------------------------
