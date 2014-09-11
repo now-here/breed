@@ -13,9 +13,9 @@ class mysql_database_copy():
 		if breed.get_op_var('db_name_prefix'):
 			db_name_prefix = breed.get_op_var('db_name_prefix')
 		else:
-			db_name_prefix = re.sub('[^0-9a-zA-Z]+', '_', breed.repo_name)+"_"
+			db_name_prefix = breed.dbname_safe(breed.repo_name)+"_"
 
-		db_name_to = db_name_prefix+re.sub('[^0-9a-zA-Z]+', '_', breed.branch)
+		db_name_to = db_name_prefix+breed.dbname_safe(breed.branch)
 
 		if breed.get_op_var('db_name_from'):
 			db_name_from = breed.get_op_var('db_name_from')

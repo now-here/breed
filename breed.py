@@ -81,7 +81,7 @@ class breed():
 		self.branch 			= self.payload['ref'].split("/")[-1]
 		self.repo_name 			= self.payload['repository']['name']
 		self.repo_fullname		= self.payload['repository']['organization']+"/"+self.repo_name
-		self.repo_config_name	= re.sub('[^0-9a-zA-Z]+', '_', self.repo_name)
+		self.repo_config_name	= self.filename_safe(self.repo_name)
 		self.repo_url = 'https://'+self.config.get('operations','github_token')+':@github.com/'+self.repo_fullname+'.git'
 		
 		if self.payload['created']:
@@ -198,11 +198,8 @@ class breed():
 		self.logger_global.exception(message)
 		self.logger_fragment.exception(message)
 	
-		if self.config.get('general','log_level') == 'debug':
-			self.log_add_msg(message)
-			raise 
-		else:
-			raise Exception('There was an error, see logs')
+		self.log_add_msg(message)
+		raise 
 
 
 	#--------------------------------------------------
@@ -246,12 +243,8 @@ class breed():
 		else:
 			handler = logging.FileHandler(log_file)
 	
-		if self.config.get('general','log_level') == 'debug':
-			logger.setLevel(logging.DEBUG)
-			handler.setLevel(logging.DEBUG)
-		else:
-			logger.setLevel(logging.ERROR)
-			handler.setLevel(logging.ERROR)
+		logger.setLevel(logging.DEBUG)
+		handler.setLevel(logging.DEBUG)
 		
 		formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 		handler.setFormatter(formatter)
@@ -332,6 +325,7 @@ class breed():
 				sys.path.append("operations/")
 
 				try:
+					# @todo - when op is called multiple times, don't import again
 					mod = importlib.import_module(op_name)
 					op = getattr(mod,op_name)
 				except Exception, e:
@@ -363,3 +357,11 @@ class breed():
 			self.config = config
 			return config
 
+	#---------------------------------
+	# Make names safe for file and dbs
+	#---------------------------------
+	def filename_safe(self, name):
+		return re.sub('[^0-9a-zA-Z\-]+', '_', name)
+
+	def dbname_safe(self, name):
+		return re.sub('[^0-9a-zA-Z]+', '_', name)

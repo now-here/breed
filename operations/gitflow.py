@@ -3,6 +3,7 @@ import shutil
 
 #--------------------------------------------------
 # GitFlow deployment
+# @author - Boz Kay http://boz.co.uk
 # Create/Pull/Delete dirs for each branch
 # All feature, hotfix, release in separate dirs in DEV env.
 # Only release branchs in separate dirs in STAGING env
