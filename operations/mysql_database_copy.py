@@ -32,7 +32,33 @@ class mysql_database_copy():
 			if p[2] == 1:
 				breed.log_op_info("Database %s exists - already deployed" % db_name_to)
 				return
-				
+			
+			self.db_copy(breed,db_u,db_p,db_name_from,db_name_to,False)
+
+		elif operation == 'branch_changed' :
+
+			breed.log_op_info('Doing nothing')
+
+		elif operation == 'branch_deleted':
+   
+			# @todo - if del_ exists create multiple? del2_ etc
+			self.db_copy(breed,db_u,db_p,db_name_to,"del_"+db_name_to,True)
+			
+			# @todo - make an option set in ini - drop db seems too dangerous?
+			breed.run(stdin='DROP DATABASE '+db_name_to, command=['mysql',
+					'--user='+db_u,
+					'--password='+db_p])
+
+
+	# @todo - check if to db exists, if not create.
+
+	def db_copy(self,breed,db_u,db_p,db_name_from,db_name_to, create=False):
+
+			if create== True:
+				p = breed.run(stdin='CREATE DATABASE '+db_name_to, command=['mysql',
+						'--user='+db_u,
+						'--password='+db_p],raise_error=False)
+
 			command = ['mysqldump',
 					'--user='+db_u,
 					'--password='+db_p,
@@ -45,13 +71,4 @@ class mysql_database_copy():
 					'--password='+db_p,
 					db_name_to]
 			breed.run(stdin=p[0], command=command)
-
-		elif operation == 'branch_changed' :
-
-			breed.log_op_info('Doing nothing')
-
-		elif operation == 'branch_deleted':
-   
-			breed.run(stdin='DROP DATABASE '+db_name_to, command=['mysql',
-					'--user='+db_u,
-					'--password='+db_p])
+	

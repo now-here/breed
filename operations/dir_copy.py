@@ -26,6 +26,7 @@ class dir_copy():
 			
 			try:
 			
+				# @todo - optional create folder if not exists.
 				distutils.dir_util.copy_tree(copy_from_dir, copy_to_dir, update=1)
 			
 			except Exception, e:
