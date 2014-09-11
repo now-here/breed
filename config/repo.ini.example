@@ -30,3 +30,13 @@ db_p: password
 # Optional static from database name
 # db_name_from: db_name
 
+[op_dir_copy]
+
+active: False
+
+# Place everything in this folder...
+# copy_from_dir: /var/www/breed/copy
+
+# ...into this folder.
+# Optional - If unset, default is root_dir/branch_name
+# copy_to_dir: /var/www/example
