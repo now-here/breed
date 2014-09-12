@@ -21,7 +21,8 @@ now = time.time()
 # @todo - private method names
 #--------------------------------------------------
 
-CONFIG_DIR = os.path.dirname(os.path.realpath(__file__))+'/config'
+BREED_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) # the parent dir
+CONFIG_DIR = BREED_ROOT+'/config'
 
 class breed():
 
@@ -42,8 +43,8 @@ class breed():
 
 	def deploy(self):
 		
-		# ensure os is in current working dir
-		os.chdir(os.path.dirname(os.path.realpath(__file__)))
+		# ensure os is in breed root dir
+		os.chdir(BREED_ROOT)
 		
 		# prepare logs directory
 		self.log_fragment_mkdir()
@@ -306,7 +307,7 @@ class breed():
 
 	#--------------------------------------------------
 	# imports operations modules and runs code
-	# @todo - if an operation fails, reverse operations
+	# @todo - if an operation fails, reverse previous operations
 	#--------------------------------------------------
 	def run_operations(self, operation):
 
@@ -322,7 +323,8 @@ class breed():
 				self.log_op_info("Loading "+op_name)
 
 				import sys
-				sys.path.append("operations/")
+				sys.path.append("system/ops/")
+				sys.path.append("ops/")
 
 				try:
 					# @todo - when op is called multiple times, don't import again

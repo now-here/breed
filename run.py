@@ -14,7 +14,7 @@ PATH = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(PATH)
 os.chdir(PATH)
 
-from breed import breed
+from system.breed import breed
 
 # Init webpy framework
 urls = (
