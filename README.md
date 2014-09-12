@@ -2,7 +2,7 @@
 
 ## Code in development - don't use yet.
 
-## (Continuous Git Deployment Framework)
+## (Git Deploy Framework)
 
 Breed allows you to deploy your git repositories continuously and intelligently.
 
