@@ -323,8 +323,8 @@ class breed():
 				self.log_op_info("Loading "+op_name)
 
 				import sys
-				sys.path.append("system/ops/")
-				sys.path.append("ops/")
+				sys.path.append(BREED_ROOT+"/system/ops/")
+				sys.path.append(BREED_ROOT+"/ops/")
 
 				try:
 					# @todo - when op is called multiple times, don't import again
