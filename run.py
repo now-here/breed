@@ -95,14 +95,15 @@ class payload_data:
 		if True: #auth(web):
 
 			payloads = []
-			for x in os.listdir(config.get('general','log_dir')) :
+			log_dir_abs = PATH+'/'+config.get('general','log_dir');
+			for x in os.listdir(log_dir_abs) :
 				if "payload_" in x :
 					payload = {}
 					payload['time'] = x.replace('payload_','')
-					f = open(config.get('general','log_dir')+'/'+x+'/payload.json','r')
+					f = open(log_dir_abs+'/'+x+'/payload.json','r')
 					payload['json'] = f.read()
 					f.close()
-					f = open(config.get('general','log_dir')+'/'+x+'/deploy.log','r')
+					f = open(log_dir_abs+'/'+x+'/deploy.log','r')
 					payload['log'] = f.read()
 					payloads.append(payload)
 					f.close()

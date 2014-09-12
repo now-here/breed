@@ -31,7 +31,8 @@ class breed():
 		self.log = []
 		self.logger = {}
 		self.config = self.get_config()
-		self.log_dir = self.config.get('general','log_dir')
+		# @todo - allow ini to set an absolute path
+		self.log_dir = BREED_ROOT+'/'+self.config.get('general','log_dir')
 
 	def set_payload(self, json_data):
 		self.payload_json = json_data
@@ -123,6 +124,7 @@ class breed():
 		
 		# Attempt to create the fragment dir
 		self.fragment_dir = '{0}/payload_{1}/'.format(self.log_dir,deploy_id)
+		print self.fragment_dir
 
 		if not os.path.isdir(self.fragment_dir):
 			os.mkdir(self.fragment_dir)
