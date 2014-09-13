@@ -80,7 +80,7 @@ class breed():
 		# If you adapt - please create a pull request
 
 		# github payload processing
-		self.branch 			= self.payload['ref'].split("/")[-1]
+		self.branch 			= self.payload['ref'].replace('refs/heads/','')
 		self.repo_name 			= self.payload['repository']['name']
 		self.repo_fullname		= self.payload['repository']['organization']+"/"+self.repo_name
 		self.repo_config_name	= self.filename_safe(self.repo_name)
