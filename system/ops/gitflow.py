@@ -19,7 +19,7 @@ class gitflow():
 	def run(self,breed,operation):
 	
 		breed.log_op_info("Processing type {0}".format(operation))
-		branch_dir = breed.get_op_var('root_dir')+'/'+breed.branch
+		branch_dir = breed.get_op_var('root_dir')+'/'+breed.filename_safe(breed.branch)
 		
 		if operation == 'branch_created' :
 		
