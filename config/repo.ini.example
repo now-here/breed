@@ -5,12 +5,12 @@
 [general]
 root_dir: /var/www/domain.com/
 
-[op_gitflow]
+[10_gitflow]
 
 # Will create a folder for each branch within root dir
 active: False
 
-[op_mysql_database_copy]
+[20_mysql_database_copy]
 
 active: True
 
@@ -30,7 +30,7 @@ db_p: password
 # Optional static from database name
 # db_name_from: db_name
 
-[op_dir_copy]
+[30_dir_copy]
 
 active: False
 
