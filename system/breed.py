@@ -8,6 +8,7 @@ import ConfigParser
 import re
 import time
 import shutil
+import collections
 
 now = time.time()
 
@@ -124,8 +125,7 @@ class breed():
 		
 		# Attempt to create the fragment dir
 		self.fragment_dir = '{0}/payload_{1}/'.format(self.log_dir,deploy_id)
-		print self.fragment_dir
-
+		
 		if not os.path.isdir(self.fragment_dir):
 			os.mkdir(self.fragment_dir)
 	
@@ -314,13 +314,14 @@ class breed():
 	def run_operations(self, operation):
 
 		self.log_info("Loading operations")
-
-		for section_name in self.repo_config.sections():
 		
-			# Check section name contains a corresponding operation
-			if 'op_' in section_name:
+		for section_name in sorted(self.repo_config.sections()):
+		
+			# Check section name contains en operation (by detecting operation order number)
+			if section_name[0].isdigit():
 				
-				op_name = section_name.replace('op_','')
+				# Remove number from start of section name i.e. 10_the_name > the_name
+				op_name = section_name.split('_', 1)[1]
 				
 				self.log_op_info("Loading "+op_name)
 
