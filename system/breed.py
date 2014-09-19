@@ -287,8 +287,8 @@ class breed():
 	#--------------------------------------------------
 	def get_op_var(self,var_name, cascade=True):
 
-		if self.repo_config.has_option('op_'+self.op_name,var_name):
-			return self.repo_config.get('op_'+self.op_name,var_name)
+		if self.repo_config.has_option('op_'+self.op_name_full,var_name):
+			return self.repo_config.get('op_'+self.op_name_full,var_name)
 		else:
 			if cascade == True:
 				if self.repo_config.has_option('general',var_name):
@@ -322,8 +322,9 @@ class breed():
 				
 				# Remove number from start of section name i.e. 10_the_name > the_name
 				op_name = section_name.split('_', 1)[1]
+				op_name_full = section_name
 				
-				self.log_op_info("Loading "+op_name)
+				self.log_op_info("Loading "+op_name_full)
 
 				import sys
 				sys.path.append(BREED_ROOT+"/system/ops/")
@@ -336,8 +337,8 @@ class breed():
 				except Exception, e:
 					self.log_raise(str(e))
 				else:
-					# set op_name for this.get_op_var()
 					self.op_name = op_name
+					self.op_name_full = op_name_full
 					if self.get_op_var('active',False) == 'True':
 						op(self,operation)
 					else:
