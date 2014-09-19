@@ -157,6 +157,7 @@ class breed():
 		command 		= kwargs.get('command')
 		stdout_log 		= kwargs.get('stdout_log',True)
 		stdin 			= kwargs.get('stdin',False)
+		cwd 			= kwargs.get('cwd','None')
 		raise_error 	= kwargs.get('raise_error',True)
 
 		try:
@@ -164,7 +165,8 @@ class breed():
 							shell=False,
 							stdin=subprocess.PIPE,
 							stdout=subprocess.PIPE,
-							stderr=subprocess.PIPE)
+							stderr=subprocess.PIPE,
+							cwd=cwd)
 				
 		except Exception, e:
 			self.log_raise(str(e))
