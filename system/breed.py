@@ -287,8 +287,8 @@ class breed():
 	#--------------------------------------------------
 	def get_op_var(self,var_name, cascade=True):
 
-		if self.repo_config.has_option('op_'+self.op_name_full,var_name):
-			return self.repo_config.get('op_'+self.op_name_full,var_name)
+		if self.repo_config.has_option(self.op_name_full,var_name):
+			return self.repo_config.get(self.op_name_full,var_name)
 		else:
 			if cascade == True:
 				if self.repo_config.has_option('general',var_name):
