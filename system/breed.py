@@ -157,7 +157,7 @@ class breed():
 		command 		= kwargs.get('command')
 		stdout_log 		= kwargs.get('stdout_log',True)
 		stdin 			= kwargs.get('stdin',False)
-		cwd 			= kwargs.get('cwd')
+		cwd 			= kwargs.get('cwd',os.getcwd())
 		raise_error 	= kwargs.get('raise_error',True)
 
 		try:
